@@ -1,0 +1,83 @@
+
+//- New NavBar
+nav.navbar.navbar-light.navbar-expand-lg.navigation-clean-button(style='background: #0e0e0e;')
+  .container
+    a.navbar-brand(href='/')
+      img(src='/images/LogoBookInkBlanc.png' style='max-width: 125px;')
+
+    button.navbar-toggler.navbar-toggler(type='button' data-toggle='collapse' data-target='#navcol-1' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+
+    #navcol-1.collapse.navbar-collapse
+      ul.navbar-nav.mr-auto
+        //- li.nav-item
+        //-   a.nav-link(href='/signup' style='color: #fff;') Enregistrement
+        li.nav-item
+          a.nav-link(href='/artiste' style='color: #fff;')
+            i.fas.fa-palette(style='padding-right: 5px;font-size: 20px;')
+            | Menu Artiste
+        //- li.nav-item
+        //-   a.nav-link(href='/signin' style='color: #fff;') Login Artiste        
+      span.navbar-text.actions
+        //- h4(style='padding-right: 5px;font-size: 16px;color: #00ccff;text-transform: capitalize;') Bonjour #{user.Nom_utilisateur}
+        a.login(href='/admin' style='padding-right: 5px;font-size: 16px;color: #00ccff;')
+          i.fas.fa-users-cog(style='padding-right: 5px;font-size: 20px;color: #00ccff;')
+          | Admin
+        a.login(href='/signin' style='padding-right: 5px;color: #00ccff;')
+          i.fas.fa-sign-out-alt(style='padding-right: 5px;font-size: 20px;')
+          | Quitter
+        a.login(href='/profil' style='color: #00ccff;')
+          i.fas.fa-user-circle(style='padding-right: 5px;font-size: 20px;')
+          | Profil
+
+
+
+
+//- style.
+//-   ul {  
+//-   padding: 20px;
+//-   }
+//-   @media screen and (min-width: 768px) {
+//-   li {
+//-   font-size: 17px;
+//-   }
+//-   }
+//-   @media screen and (max-width: 1000px) {
+//-   li {
+//-   font-size: 11px;
+//-   }
+//-   }
+
+
+
+//- nav.navbar.navbar-expand-md.bg-light.px-5.py-0.mb-3.m-0.navbar-dark
+//-   .container-fluid
+//-     a.navbar-brand(href="/").ml-5.m-auto
+//-       img(src="/images/logoBookInkBlanc.png" alt="logo" width="150") 
+
+//-     button.navbar-toggler.bg-primary(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+//-       span.navbar-toggler-icon.inverse(id="navbartoggler")
+
+//-     .collapse.navbar-collapse.text-right(id='navbarSupportedContent')
+
+
+//-       ul.navbar-nav.text-capitalize.m-auto.text-size 
+//-               li.nav-item.hover-primary
+//-                 a.nav-link(href="/").text-primary.btn.btn-outline-secondary.btn-sm.mr-2 accueil
+//-               li.nav-item 
+//-                 a.nav-link(href="/artisteLogin").text-primary.btn.btn-outline-secondary.btn-sm.mr-2 Login Artiste
+//-               li.nav-item 
+//-                 a.nav-link(href="/artiste").text-primary.btn.btn-outline-secondary.btn-sm.mr-2 Artiste Main
+//-               li.nav-item 
+//-                 a.nav-link(href="/admin").text-primary.btn.btn-outline-secondary.btn-sm.mr-2 Admin Main
+//-               li.nav-item 
+//-                 a.nav-link(href="/profil").text-primary.btn.btn-outline-secondary.btn-sm.mr-2 Profil
+//-               li.nav-item.font-weight-bold 
+//-                 a.nav-link(href="/signin").text-primary.btn.btn-outline-secondary.btn-sm.mr-2 Login
+//-               li.nav-item.font-weight-bold 
+//-                 a.nav-link(href="/signup").text-primary.btn.btn-outline-secondary.btn-sm.mr-2 Enregistrement
+//-               li.nav-item.font-weight-bold 
+//-                 a.nav-link(href="/logout").text-primary.btn.btn-outline-secondary.btn-sm.mr-2 Logout
+
+
+

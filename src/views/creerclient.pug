@@ -1,0 +1,38 @@
+extends pageLayout
+
+block content
+    body.text-center(id="main")
+        .col-sm-8.col-md-4.mx-auto
+            .card.text-center
+                .card-head.my-4
+                    h3(id="titre1").text-dark Créer un Client
+                    hr
+                .card-body
+                    form(id="frm1" name="formulario1" action="/creerclient" method="POST").mt-1
+                        input(type='text' name='nom_client' placeholder='Nom de Famille').mt-1 
+                        br
+                        input(name="prenom_client" placeholder="Prénom du client").mt-1
+                        br 
+                        input(name="surnom_client" placeholder="Surnom du client").mt-1
+                        br 
+                        input(name="communication_client" placeholder="Communication client").mt-1
+                        br 
+                        input(name="telephone_client" placeholder="Téléphone").mt-1
+                        br
+                        input(type="email" name="courriel_client" placeholder="Courrier client").mt-1 
+                        br
+                        select(name='enable_client').mt-1
+                            option(value='A' selected='') Actif
+                            option(value='I') Inactif
+                        //- input(type="hidden" name="Id_Artiste" value=user.Id_Artiste)
+                        br
+                        br
+                        input(type="hidden" name="Id_Artiste" value=user.Id_Artiste)
+                        a.btn.myButtonRetourCenter.mb-4(href="/") Retour
+                        input.btn.myButtonSuccess.mb-4(name="Enregistrement" type="submit")
+                        a.btn.myButtonCenter.mb-4(href='/listeClients/'+user.Id_Artiste) Liste Clients
+
+    br
+    br
+    img(src="images/LogoBookInkNoir.png" alt="LogoBookInk" style='max-width: 100px;')
+    img(src="images/logo.jpg" alt="5Monkeys" style="max-width: 100px;")

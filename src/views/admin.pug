@@ -1,0 +1,25 @@
+extends pageLayout
+
+block content
+    .card.text-center.col-6.m-auto
+        .container.my-4
+            h2.text-dark(id="titre1") Page Administrateur
+            br
+            p.text-dark(id="titre2") Ici vous trouverez toute les informations par rapport aux artistes ainsi que leurs projets.
+            br
+            //- a.col-sm-12.col-md-4.text-center(href="/profileArtiste").text-primary.btn.btn-outline-secondary.btn-sm.mr-1.mt-1 Votre Profile
+            //- a.col-sm-12.col-md-4.text-center(href="/listeProjets").text-primary.btn.btn-outline-secondary.btn-sm.mr-1.mt-1 Vos Projets
+            a.btn.myButton(href="/creerartiste") Créer Artiste
+            //- a.col-sm-12.col-md-4.text-center(href="/creerclient").text-primary.btn.btn-outline-secondary.btn-sm.mr-1.mt-1 Créer Client
+            //- a.col-sm-12.col-md-4.text-center(href="/modifierclient").text-primary.btn.btn-outline-secondary.btn-sm.mr-1.mt-1 Modifier Client
+            //- a.col-sm-12.col-md-4.text-center(href="/listeClients").text-primary.btn.btn-outline-secondary.btn-sm.mr-1.mt-1 Liste Clients
+            a.btn.myButton(href="/listeArtiste") Liste Artistes
+            //- a.col-sm-12.col-md-4.text-center(href="/rapportRevenus").text-primary.btn.btn-outline-secondary.btn-sm.mr-1.mt-1 Votre Rapport
+            //- br
+            //- br
+
+            a.btn.myButtonRetour(href="/") Retour
+    body.text-center(id="main")
+    br
+    img(src="images/LogoBookInkNoir.png", alt="LogoBookInk", style='max-width: 100px;')
+    img(src="images/logo.jpg", alt="5Monkeys", style="max-width: 100px;")

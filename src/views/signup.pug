@@ -1,0 +1,29 @@
+extends pageLayout
+
+block content
+    .col-sm-8.col-md-6.mx-auto
+        .card.text-center
+            .card-head.my-4
+                h3(id="titre1").text-dark Enregistrement
+            .card-body
+                form(action='/signup' method='POST')
+                    .form-group
+                        select#Nom_artiste.form-control(name='Id_artiste')
+                            each item in Param
+                                option(value= item.Id_artiste) #{item.Nom_artiste} #{item.Prenom_artiste}
+                    .form-group
+                        input.form-control(type='text' name='Nom_utilisateur' placeholder='Nom_utilisateur')
+                    .form-group
+                        input.form-control(type='password' name='Mot_de_passe_utilisateur' placeholder='Mot_de_passe')
+                    .form-group
+                        select#etat_utilisateur(name='Etat_utilisateur')
+                            option(value='A' default) Actif
+                            option(value='I') Inactif
+                    .form-group
+                        button.btn.btn-success.btn-block
+                            |Sign Up
+    body.text-center(id="main") 
+        br
+        br
+        img(src="images/LogoBookInkNoir.png", alt="LogoBookInk", style='max-width: 100px;')
+        img(src="images/logo.jpg", alt="5Monkeys", style="max-width: 100px;")

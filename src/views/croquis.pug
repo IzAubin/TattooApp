@@ -1,0 +1,19 @@
+extends pageLayout
+
+block content
+    .card.col-xs-8.col-md-5.m-auto.text-center
+        .card-head
+            h3.text-primary Croquis d'image
+            hr
+            message=message
+        .card-body
+            form(action="/croquis" method="POST")
+                input(type='text' name='Id_Projet' placeholder='Id_Projet') 
+                br
+                br
+                label(for="N_Image") Image:
+                    input(name="Image_croquis" placeholder="Image_croquis") 
+                div(style="background-color:rgba(0,0,0,.03);")
+                    a.btn.btn-primary.m-4(href='/listeClients')
+                        | Liste de clients
+                    input.btn.btn-outline-success(name="Enregistrement" type="submit") 

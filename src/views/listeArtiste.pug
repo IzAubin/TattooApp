@@ -1,0 +1,133 @@
+extends pageLayout
+
+block content
+
+    style.
+        tr[data-href] {
+        cursor: pointer;
+        }
+
+
+    body.text-center(id="main") 
+        .container.my-4
+            h3(id="titre1") Liste des Artistes
+            br
+            a.btn.myButton.mb-4(href='/creerartiste') Creer un Artiste
+            a.btn.myButtonRetour.mb-4(href='../admin') Retour
+
+            div.table-responsive
+                table.table.table-dark.table-hover
+                    thead.thead-light
+                        tr
+                            th.text-dark(onclick='sortTable(7)' scope='col') ID
+                            th.text-dark(onclick='sortTable(0)' scope='col') Nom de l'artiste
+                            th.text-dark(onclick='sortTable(1)' scope='col') Prenom de l'artiste
+                            th.text-dark(onclick='sortTable(2)' scope='col') Surnom
+                            //- th.text-dark(onclick='sortTable(3)' scope='col') Communication
+                            th.text-dark(onclick='sortTable(4)' scope='col') T&eacute;l&eacute;phone
+                            th.text-dark(onclick='sortTable(5)' scope='col') Courriel
+                            th.text-dark(onclick='sortTable(6)' scope='col') &Eacute;tat
+                            //- th.text-dark(onclick='sortTable(8)' scope='col') Modifier
+                    each elem in Param
+                        tbody
+                            tr(data-href='../modifierArtiste/'+elem.Id_artiste)
+                                td(name='retourId' value="")= elem.Id_artiste
+                                td(name='retourNom' value="")= elem.Nom_artiste
+                                td(name='retourPrenom' value="")= elem.Prenom_artiste
+                                td(name='retourSurnom' value="")= elem.Surnom_artiste
+                                //- td(name='retourProfile' value="")= elem.id_Profil_A
+                                td(name='retourTel' value="")= elem.Telephone_artiste
+                                td(name='retourCour' value="")= elem.Courriel_artiste
+                                td(name='retourEtat' value="")= elem.Etat_artiste
+                                //- td
+                                //-     a.btn.btn-outline-warning(href='../modifierArtiste/'+elem.Id_artiste)
+                                //-         | Modifier
+
+
+            //- ul
+            //-     each elem in Param
+                    //- li
+                    //-     form(action="/modifierArtiste" method="POST")  
+                    //-         button(name="btn_modifier" type="submit")
+                    //-             input(type="text" name="retourId" value=elem.Id_artiste hidden)
+                    //-             input(type="text" name="retourNom" value=elem.Nom_artiste )
+                    //-             input(type="text" name="retourPrenom" value=elem.Prenom_artiste hidden)
+                    //-             input(type="text" name="retourSurnom" value=elem.Surnom_artiste hidden)
+                    //-             input(type="text" name="retourCour" value=elem.Courriel_artiste hidden)
+                    //-             input(type="text" name="retourTel" value=elem.Telephone_artiste hidden)
+                    //-             input(type="text" name="retourLogo" value=elem.Logo_artiste hidden)
+                    //-             input(type="text" name="retourProfile" value=elem.id_Profil_A hidden)
+                    //-             input(type="text" name="retourEtat" value=elem.Etat_artiste hidden)
+                    //-             h4 nom: 
+                    //-                 span=elem.Nom_artiste
+                    //-             h5 prénom: 
+                    //-                 span=elem.Prenom_artiste
+                    //-             h5 surnom: 
+                    //-                 span=elem.Surnom_artiste
+                    //-             h5 courriel: 
+                    //-                 span=elem.Courriel_artiste
+
+        script.
+            function sortTable(n) {
+                var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+                table = document.getElementById("myTable");
+                switching = true;
+                //Set the sorting direction to ascending:
+                dir = "asc";
+                /*Make a loop that will continue until
+                no switching has been done:*/
+                while (switching) {
+                //start by saying: no switching is done:
+                switching = false;
+                rows = table.rows;
+                /*Loop through all table rows (except the
+                first, which contains table headers):*/
+                for (i = 1; i < (rows.length - 1); i++) {
+                //start by saying there should be no switching:
+                shouldSwitch = false;
+                /*Get the two elements you want to compare,
+                one from current row and one from the next:*/
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+                /*check if the two rows should switch place,
+                based on the direction, asc or desc:*/
+                if (dir == "asc") {
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch= true;
+                break;
+                }
+                } else if (dir == "desc") {
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+                }
+                }
+                }
+                if (shouldSwitch) {
+                /*If a switch has been marked, make the switch
+                and mark that a switch has been done:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                //Each time a switch is done, increase this count by 1:
+                switchcount ++;
+                } else {
+                /*If no switching has been done AND the direction is "asc",
+                set the direction to "desc" and run the while loop again.*/
+                if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+                }
+                }
+                }
+            }
+        script.
+            document.addEventListener("DOMContentLoaded", () => {
+            const rows = document.querySelectorAll("tr[data-href]");        
+            rows.forEach(row => {
+            row.addEventListener("click", () => {
+            window.location.href = row.dataset.href;
+            });
+            });
+            });

@@ -1,0 +1,41 @@
+extends pageLayout
+
+block content
+
+    .col-sm-8.col-md-5.mx-auto
+        .card.text-center
+            .card-head.my-4
+                h3.text-dark(id="titre1") Créer un artiste
+                hr
+                message=message
+            .card-body.text-center
+                form(id="frm1" name="formulario1" action="/creerartiste" method="POST").col-9.mt-1.m-auto
+                    input(type='text' name='Nom_artiste' placeholder="Nom").col-9.mt-1
+                    br
+                    input(name="Prenom_artiste" placeholder="Prénom").col-9.mt-1
+                    br
+                    input(name="Surnom_artiste" placeholder="Surnom").col-9.mt-1
+                    br
+                    input(type="email" name="Courriel_artiste" placeholder="Courriel").col-9.mt-1 
+                    br
+                    input(name="Telephone_artiste" placeholder="Téléphone").col-9.mt-1
+                    br
+                    label(for="Logo_artiste" id="titre2").mt-1 Logo Personnel:
+                        input(name="Logo_artiste" placeholder="Logo" type="file" accept=".jpeg, .jpg").col-9.mt-1
+                    input(type="number" name="id_Profil" placeholder="Id Profile").col-9.mt-1
+                    br
+                    select(name='Etat_artiste').mt-1
+                        option(value='A' selected='') Actif
+                        option(value='I') Inactif
+                    br
+                    br
+                    a.btn.myButtonRetourCenter.mb-4(href='../admin') Retour
+                    input.btn.myButtonSuccess.mb-4(name="Enregistrement", type="submit")
+                   
+                    //- a(href="/listeArtiste").btn.myButton Liste Artistes
+    body.text-center(id="main")
+        br
+        br
+        img(src="images/LogoBookInkNoir.png", alt="LogoBookInk", style='max-width: 100px;')
+        img(src="images/logo.jpg", alt="5Monkeys", style="max-width: 100px;")
+

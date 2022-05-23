@@ -1,0 +1,49 @@
+extends pageLayout 
+block content
+    body.text-center(id="main")
+        .card.col-xs-8.col-md-5.m-auto.text-center
+            .card-head
+                br
+                h3(id="titre1").text-dark Modification de Projet
+                hr
+            .card-body
+                form(action="/listeprojets/"+passeIdClient method="POST")
+                    <p id="demo"></p>
+                    input(name='Id_Artiste' type="hidden" value= passeIdArtiste)
+                    input(name='Id_projet' type="hidden" value= passeIdProjet)
+                    input(name='Id_Client' type="hidden" value= passeIdClient)
+                    input#Nom_projet(name="Nom_projet" placeholder="Nom du projet" value= oldNomProjet)
+                    br
+                    br
+                    input(name="Date_rendez_vous" type="datetime-local" value= oldDateRendeVous)
+                    br
+                    br
+                    input#Prix_projet(name="Prix_projet" placeholder="Prix $" value= oldPrix)
+                    br
+                    br
+                    input#Depot_projet(name="Depot_projet" placeholder="Dépot $" value= oldDepot)
+                    br
+                    br
+                    input#Solde_projet(readonly name="Solde_projet" placeholder="Solde $" value= oldSolde)
+                    br
+                    select(name='Etat_projet' value=oldEtatProjet).mt-1
+                        option(value='A' selected='') Actif
+                        option(value='I') Inactif
+                        option(value='F') Finalis&eacute;
+                        //- input(type="hidden" name="Id_Artiste" value=user.Id_Artiste)
+                    br
+                    br
+                    //- a(href="/listeProjets/"+ParamP.Id_Client).btn.myButtonRetourCenter.mb-4 Retour
+                    input.btn.myButtonSuccess.mb-4(name="Modifier" type="submit")
+                    a.btn.myButtonCenter.mb-4(href="/listeClients/"+passeIdArtiste) Liste Clients
+
+
+                    //- a(href="/menuimages/"+ParamP.Id_projet).text-info.btn.btn-outline-info.mr-1 Images
+
+            script.
+                function myFunction() {
+                    var depot = document.getElementById("Depot_projet").value;
+                    var prix = document.getElementById("Prix_projet").value;
+                    var solde = prix - depot;
+                    document.getElementById("Solde_projet").value = solde;
+                }

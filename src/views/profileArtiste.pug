@@ -1,0 +1,30 @@
+extends pageLayout
+
+block content
+    .col-sm-8.col-md-5.mx-auto
+        .card.text-center
+            .card-head.my-4
+                h3(id="titre1").text-dark Mon Profil - Enregistrement
+                hr
+            .card-body
+                form(action="/profilArtiste", method="POST")
+                    input(name="nom" placeholder="Nom").mt-1 
+                    br
+                    input(name="prénom" placeholder="Prénom").mt-1  
+                    br
+                    input(name="username" placeholder="Username" required).mt-1  
+                    br
+                    input(name="email" placeholder="Courriel").mt-1  
+                    br
+                    input(name="cell" placeholder="Cellulaire").mt-1  
+                    br
+                    input(name="insta" placeholder="Lien Instagram").mt-1
+                    br
+                    br
+                    a.btn.myButtonRetourCenter.mb-4(href="/artiste") Retour
+                    input.btn.myButtonSuccess.mb-4(name="Modifier" type="submit" onclick="myFunction()")
+        body.text-center(id="main") 
+                br
+                br
+                img(src="images/LogoBookInkNoir.png", alt="LogoBookInk", style='max-width: 100px;')
+                img(src="images/logo.jpg", alt="5Monkeys", style="max-width: 100px;")

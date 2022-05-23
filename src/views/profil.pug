@@ -1,0 +1,21 @@
+extends pageLayout
+
+block content
+    body.text-center(id="main") 
+        h1.text-center(id="titre1") Bienvenue à votre Profile
+        .container.p-4
+            .row
+                .col-md-4.mx-auto
+                    .card.text-center
+                        .card-body
+                            h3(id="titre2") Bienvenue #{user.Surnom_artiste}
+                            h4(id="texte1") #{user.Nom_utilisateur}
+                            h5(id="texte2") #{user.Id_Artiste}
+                            h5(id="texte3") #{user.Courriel_artiste}
+                            br
+                            a.btn.myButtonCenter(href="/creerclient") Créer un Client
+
+        br
+        br
+        img(src="images/LogoBookInkNoir.png" alt="LogoBookInk" style='max-width: 100px;')
+        img(src="images/logo.jpg" alt="5Monkeys" style="max-width: 100px;")

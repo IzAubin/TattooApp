@@ -1,0 +1,117 @@
+extends pageLayout
+
+block content
+    style.
+        tr[data-href] {
+        cursor: pointer;
+        }
+    body.text-center(id="main")
+        .container.my-4
+            h3(id="titre1") Liste des Clients
+            br
+            a.btn.myButton.mb-4(href='../creerclient/') Creer un client
+            a.btn.myButtonRetour.mb-4(href="/") Retour
+            div.table-responsive
+                table.table.table-dark.table-hover
+                    thead.thead-light
+                        tr
+                            
+                            th.text-dark(onclick='sortTable(0)' scope='col') Nom du client
+                            th.text-dark(onclick='sortTable(1)' scope='col') Prenom du client
+                            th.text-dark(onclick='sortTable(2)' scope='col') Surnom
+                            th.text-dark(onclick='sortTable(3)' scope='col') Communication
+                            th.text-dark(onclick='sortTable(4)' scope='col') T&eacute;l&eacute;phone
+                            th.text-dark(onclick='sortTable(5)' scope='col') Courriel
+                            th.text-dark(onclick='sortTable(6)' scope='col') &Eacute;tat
+                            th.text-dark(onclick='sortTable(7)' scope='col') Créer Projet
+                            th.text-dark(onclick='sortTable(8)' scope='col') Liste Projet
+                            //- th.text-dark(onclick='sortTable(9)' scope='col') Modifier
+                    each item in Param
+                        tbody
+                            tr(data-href='../modifierClient/'+item.Id_Client)
+                                td(style="display:none;" name='Id_Artiste' value="")= item.Id_Artiste
+                                td(name='Nom_client' value="")= item.Nom_client
+                                td(name='Prenom_client' value="")= item.Prenom_client
+                                td(name='Surnom_client' value="")= item.Surnom_client
+                                td(name='Communication_client' value="")= item.Communication_client
+                                td(name='Telephone_client' value="")= item.Telephone_client
+                                td(name='Courriel_client' value="")= item.Courriel_client
+                                td(style="display:none;" name='Id_Client' value="")= item.Id_Client
+                                if item.Etat_client === 'A'
+                                    td(name='Courriel_client' value="") Actif
+                                else
+                                    td(name='Courriel_client' value="") Inactif
+                                td
+                                    a(href='../projet/'+item.Id_Client)
+                                        i.fas.fa-solid.fa-folder-plus.fa-2x.text-light
+                                td
+                                    a(href='../listeProjets/'+item.Id_Client) 
+                                        i.fas.fa-solid.fa-clipboard-list.fa-2x.text-light
+                                //- td
+                                //-     a.btn.btn-outline-warning(href='../modifierClient/'+item.Id_Client)
+                                //-         | Modifier Client
+
+        script.
+            function sortTable(n) {
+                var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+                table = document.getElementById("myTable");
+                switching = true;
+                //Set the sorting direction to ascending:
+                dir = "asc";
+                /*Make a loop that will continue until
+                no switching has been done:*/
+                while (switching) {
+                //start by saying: no switching is done:
+                switching = false;
+                rows = table.rows;
+                /*Loop through all table rows (except the
+                first, which contains table headers):*/
+                for (i = 1; i < (rows.length - 1); i++) {
+                //start by saying there should be no switching:
+                shouldSwitch = false;
+                /*Get the two elements you want to compare,
+                one from current row and one from the next:*/
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+                /*check if the two rows should switch place,
+                based on the direction, asc or desc:*/
+                if (dir == "asc") {
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch= true;
+                break;
+                }
+                } else if (dir == "desc") {
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+                }
+                }
+                }
+                if (shouldSwitch) {
+                /*If a switch has been marked, make the switch
+                and mark that a switch has been done:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                //Each time a switch is done, increase this count by 1:
+                switchcount ++;
+                } else {
+                /*If no switching has been done AND the direction is "asc",
+                set the direction to "desc" and run the while loop again.*/
+                if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+                }
+                }
+                }
+            }
+        script.
+            document.addEventListener("DOMContentLoaded", () => {
+            const rows = document.querySelectorAll("tr[data-href]");        
+            rows.forEach(row => {
+            row.addEventListener("click", () => {
+            window.location.href = row.dataset.href;
+            });
+            });
+            });

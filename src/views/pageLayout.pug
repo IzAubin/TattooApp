@@ -1,0 +1,34 @@
+include htmlHeader.pug
+    
+body(className="body")
+  include navBar.pug
+  append content
+    if success != ''
+      .container.p-4
+        .row
+          .col-md-4.mx-auto
+            .alert.alert-success.alert-dismissible.fade.show(role='alert')
+              p= success
+              button.close(type='button' data-dismiss='alert' aria-label='Close')
+                span(aria-hidden='true') &times;
+    if message != ''
+      .container.p-4
+        .row
+          .col-md-4.mx-auto
+            .alert.alert-danger.alert-dismissible.fade.show(role='alert')
+              p= message
+              button.close(type='button' data-dismiss='alert' aria-label='Close')
+                span(aria-hidden='true') &times;
+  block content
+
+  include footer.pug
+
+script.
+  $(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+  });
+  window.setTimeout(function() {
+      $(".alert").fadeTo(500, 0).slideUp(500, function(){
+          $(this).remove(); 
+      });
+  }, 2000);

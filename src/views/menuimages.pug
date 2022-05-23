@@ -1,0 +1,21 @@
+extends pageLayout
+
+block content
+    h1.text-center Bienvenue à menu d'images
+    .container.p-4
+        .row
+            .col-md-4.mx-auto
+                p= note
+                .card.text-center
+                    .card-body
+                        h4 Numéro de projet 
+                            p= ParamP[0].Id_projet
+                        h5
+                            a(href='/projet/'+ParamP[0].Id_projet).text-link= (ParamP[0].client.Nom_client + ' ' + ParamP[0].client.Prenom_client)
+                        br
+                        a(href='/croquis/'+ParamP[0].Id_projet).text-primary.btn.btn-outline-primary.mr-1 Croquis
+                        a(href='/imagereference/'+ParamP[0].Id_projet).text-info.btn.btn-outline-info.mr-1 Image référence
+                        a(href='/dessinefinal/'+ParamP[0].Id_projet).text-warning.btn.btn-outline-warning.mr-1 Dessin finale
+                        a(href='/tattofinal/'+ParamP[0].Id_projet).text-success.btn.btn-outline-success.mr-1 Tatto finale
+                        a(href='/aiguille/'+ParamP[0].Id_projet).text-danger.btn.btn-outline-danger.mr-1 Aiguille
+        .card-footer 

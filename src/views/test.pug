@@ -1,0 +1,45 @@
+extends pageLayout 
+
+block content
+
+    style.
+        tr[data-href] {
+        cursor: pointer;
+        }
+
+    .container
+        h2 Cliquer sur une row et faire une redirection #href 
+        br
+        hr
+        
+        table.table.table-dark.table-hover
+            thead.thead-light
+                tr
+                    th STATUT
+                    th CLIENT
+                    th RENDEZ-VOUS
+            tbody
+            
+                tr(data-href="/")
+                    td 1
+                    td Doe
+                    td 02-06-2022
+                tr(data-href='https://www.linkedin.com/')
+                    td 1
+                    td Moe
+                    td 02-06-2022
+                tr(data-href='https://www.facebook.com/')
+                    td 2
+                    td Dooley
+                    td 02-06-2022
+
+
+    script.
+        document.addEventListener("DOMContentLoaded", () => {
+        const rows = document.querySelectorAll("tr[data-href]");        
+        rows.forEach(row => {
+        row.addEventListener("click", () => {
+        window.location.href = row.dataset.href;
+        });
+        });
+        });

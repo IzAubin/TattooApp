@@ -1,0 +1,19 @@
+extends pageLayout
+
+block content
+    body.text-center(id="main") 
+        .container.my-4
+            h1(id="titre1") Bienvenu sur l'application BookInk
+            br
+            img(src="images/BG1.jpg", alt="Main")
+            br
+            br
+            h2(id="titre1").text-dark Veuillez vous connecter pour continuer:
+            br
+            a.btn.myButtonSuccess.mb-4(href="/signin")  Log In
+            a.btn.myButtonCenter.mb-4(href="/signup") Enregistrement
+            br
+            br
+            img(src="images/LogoBookInkNoir.png", alt="LogoBookInk", style='max-width: 100px;')
+            img(src="images/logo.jpg", alt="5Monkeys", style="max-width: 100px;")
+

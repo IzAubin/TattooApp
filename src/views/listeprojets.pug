@@ -1,0 +1,138 @@
+extends pageLayout
+
+block content
+
+    style.
+        tr[data-href] {
+        cursor: pointer;
+        }
+    //- style.
+    //-     th {
+    //-     cursor: pointer;
+    //-     }
+    //-     th, td {
+    //-     text-align: left;
+    //-     padding: 16px;
+    //-     }
+    //-     tr:nth-child(even) {
+    //-     background-color: #f2f2f2
+    //-     }
+    body.text-center(id="main")
+        .container.my-4
+            h3(id="titre1") Liste des Projets <span>#{Param.Nom_client} #{Param.Prenom_client}</span>
+            br
+            a.btn.myButton.mb-4(href='../projet/'+Param.Id_Client) Creer un projet
+            a.btn.myButtonRetour.mb-4(href='../listeClients/1') Retour
+            div.table-responsive
+                //- table#myTable.table
+                //- thead
+                table.table.table-dark.table-hover
+                    thead.thead-light
+                        tr
+                            th.text-dark(style="display:none;") id_art
+                            th.text-dark(style="display:none;") id_cli
+                            th.text-dark(style="display:none;") id_proj
+                            th.text-dark(onclick='sortTable(0)' scope='col') Nom du projet
+                            th.text-dark(onclick='sortTable(1)' scope='col') Prix du projet
+                            th.text-dark(onclick='sortTable(2)' scope='col') D&eacute;p&ocirc;t de projet
+                            th.text-dark(onclick='sortTable(3)' scope='col') Solde du projet
+                            th.text-dark(onclick='sortTable(4)' scope='col') &Eacute;tat du projet
+                            th.text-dark(onclick='sortTable(5)' scope='col') Date de rendez-vous
+                            //th
+                            //th
+                            //th
+                    each item in Param
+                        tbody
+                            tr(data-href='../modifierProjet/'+item.Id_projet)
+                                td(style="display:none;" name='Id_Artiste' value="")= item.Id_Artiste
+                                td(style="display:none;" name='Id_Client' value="")= item.Id_Client
+                                td(style="display:none;" name='Id_projet' value="")= item.Id_projet
+                                td(name='Nom_projet' value="")= item.Nom_projet
+                                td(name='Prix_projet' value="")= item.Prix_projet
+                                td(name='Depot_projet' value="")= item.Depot_projet
+                                td(name='Solde_projet' value="")= item.Solde_projet
+                                if item.Etat_projet === 'A'
+                                    td(name='Courriel_client' value="") Actif
+                                else if item.Etat_projet === 'I'
+                                    td(name='Courriel_client' value="") Inactif
+                                else
+                                    td(name='Courriel_client' value="") Finalis&eacute;
+                                td(name='Date_rendez_vous' value="")= item.Date_rendez_vous
+                                //td
+                                //    a(href='../photos/'+item.Id_projet)
+                                //        i.fas.fa-solid.fa-folder-plus.fa-2x.text-light
+                                //td
+                                //    a(href='../listephotos/'+item.Id_projet)
+                                //        i.fas.fa-solid.fa-clipboard-list.fa-2x.text-light
+                                //td
+                                //    a(href='../paiement/'+item.Id_projet)
+                                //        i.fas.fa-solid.fa-folder-plus.fa-2x.text-light
+                                //- td
+                                //-     if item.Etat_projet != 'F'
+                                //-         a.btn.btn-warning.mr-1(href='../modifierProjets/'+item.Id_projet)
+                                //-             | Modifier le projet
+        script.
+            function sortTable(n) {
+                var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+                table = document.getElementById("myTable");
+                switching = true;
+                //Set the sorting direction to ascending:
+                dir = "asc";
+                /*Make a loop that will continue until
+                no switching has been done:*/
+                while (switching) {
+                //start by saying: no switching is done:
+                switching = false;
+                rows = table.rows;
+                /*Loop through all table rows (except the
+                first, which contains table headers):*/
+                for (i = 1; i < (rows.length - 1); i++) {
+                //start by saying there should be no switching:
+                shouldSwitch = false;
+                /*Get the two elements you want to compare,
+                one from current row and one from the next:*/
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+                /*check if the two rows should switch place,
+                based on the direction, asc or desc:*/
+                if (dir == "asc") {
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch= true;
+                break;
+                }
+                } else if (dir == "desc") {
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+                }
+                }
+                }
+                if (shouldSwitch) {
+                /*If a switch has been marked, make the switch
+                and mark that a switch has been done:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                //Each time a switch is done, increase this count by 1:
+                switchcount ++;
+                } else {
+                /*If no switching has been done AND the direction is "asc",
+                set the direction to "desc" and run the while loop again.*/
+                if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+                }
+                }
+                }
+            }
+        script.
+            document.addEventListener("DOMContentLoaded", () => {
+            const rows = document.querySelectorAll("tr[data-href]");        
+            rows.forEach(row => {
+            row.addEventListener("click", () => {
+            window.location.href = row.dataset.href;
+            });
+            });
+            });
+

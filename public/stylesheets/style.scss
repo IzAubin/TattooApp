@@ -1,0 +1,36 @@
+@import "./_variables.scss";
+
+.body {
+  background-color: grey;
+}
+
+#titre1 {
+  font-family: $font1;
+  color: $color_1;
+  font-size: $fontSize_1;
+}
+
+.titre2 {
+  font-family: $font1;
+  color: $color_1;
+  font-size: $fontSize_2;
+}
+
+#texte1 {
+  font-family: $font2;
+  color: $color_3;
+  font-size: $fontSize_2;
+}
+.texte2 {
+  font-family: $font2;
+  color: $color_4;
+  font-size: $fontSize_4;
+}
+
+.background1 {
+  background-color: $backgroundColor_1;
+}
+
+.background1 {
+  background-color: $backgroundColor_1;
+}

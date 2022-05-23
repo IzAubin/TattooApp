@@ -1,0 +1,48 @@
+extends pageLayout 
+block content
+
+    body.text-center(id="main")
+        .card.col-xs-8.col-md-5.m-auto.text-center
+            .card-head
+                br
+                h3(id="titre1").text-dark Nouveau Projet
+                hr
+            .card-body
+                form(action="/projet/"+ParamC.Id_Client method="POST")
+                    <p id="demo"></p>
+                    input(name='Id_client' type="hidden" value= ParamC.Id_client)
+                    input(name='Id_Artiste' type="hidden" value= ParamC.Id_Artiste)
+                    input(name='Id_projet' type="hidden" value= ParamC.Id_projet)
+                    input(name='Id_Client' type="hidden" value= ParamC.Id_Client)
+                    br
+                    input#Nom_projet(name="Nom_projet" placeholder="Nom du projet" value= ParamC.Nom_projet)
+                    br
+                    input(name="Date_rendez_vous" type="datetime-local" value= ParamC.Date_rendez_vous)
+                    br
+                    input#Prix_projet(name="Prix_projet" placeholder="Prix $" value= ParamC.Prix_projet)
+                    br
+                    input#Depot_projet(name="Depot_projet" placeholder="Dépot $" value= ParamC.Depot_projet)
+                    br
+                    input#Solde_projet(readonly name="Solde_projet" placeholder="Solde $" value= ParamC.Solde_projet)
+                    br
+                    select(name='Etat_projet').mt-1
+                        option(value='A' selected='') Actif
+                        option(value='I') Inactif
+                        option(value='F') Finalis&eacute;
+                        //- input(type="hidden" name="Id_Artiste" value=user.Id_Artiste)
+                    br
+                    br
+                    a.btn.myButtonRetourCenter.mb-4(href="/listeProjets/"+ParamC.Id_Client) Retour
+                    input.btn.myButtonSuccess.mb-4(name="Modifier" type="submit" onclick="myFunction()")
+                    a.btn.myButtonCenter.mb-4(href="/listeClients/"+ParamC.Id_Artiste) Liste Clients
+                        //-   a(href="/menuimages/"+ParamC.Id_projet).text-info.btn.btn-outline-info.mr-1 Images  
+
+
+
+                    script.
+                        function myFunction() {
+                            var depot = document.getElementById("Depot_projet").value;
+                            var prix = document.getElementById("Prix_projet").value;
+                            var solde = prix - depot;
+                            document.getElementById("Solde_projet").value = solde;
+                        }

@@ -1,0 +1,44 @@
+
+include htmlHeader.pug
+
+
+//- block content
+
+section.login-clean(style="background: url('images/tattoo.jpg') center / cover no-repeat;height: 100vh;opacity: 1;filter: brightness(100%);")
+  .container(style='width: 350px;padding-right: 0;padding-left: 0;')
+    .row
+      .col.d-flex.float-none(style='padding: 0;')
+        form.float-sm-start(method='post' style='background: rgba(23,23,23,0.9);border-radius: 5px;')
+          h2.visually-hidden
+          .illustration
+            img(src='images/LogoBookInkBlanc.png' style='max-width: 200px;margin-bottom: 30px;margin-top: 30px;')
+          .mb-3
+            input.form-control(type='text' name='Nom_utilisateur' placeholder='Nom utilisateur' style='padding-right: 12px;')
+          .mb-3
+            input.form-control(type='password' name='Mot_de_passe_utilisateur' placeholder='Mot de passe')
+          .text-center.mb-3(style='width: 140px;margin-right: auto;margin-left: auto;')
+            button.btn.btn-primary.d-block.w-100(type='submit' style='background: rgb(0,204,255);color: rgb(23,23,23);font-weight: bold;') CONNEXION
+            img(src="images/logo5monkeys_Blanc.png", alt="5Monkeys", style="max-width: 75px;padding-top: 50px;opacity: 0.5;")
+    body.text-center(id="main")        
+
+//- Section: Design Block
+
+//-     .container.p-4
+//-     .row
+//-         .col-md-3.mx-auto
+//-             .card.text-center.bg-dark
+//-                 .card-header 
+//-                 img.card-img-top.mx-auto.m-2(src='images/LogoBookInkBlanc.png' style='max-width: 400px;' alt='Logo')
+//-                 .card-body
+//-                 form(action='/signin' method='POST')
+//-                     .form-group
+//-                         input.form-control(type='text' name='Nom_utilisateur' placeholder='Nom_utilisateur')
+//-                     .form-group
+//-                         input.form-control(type='password' name='Mot_de_passe_utilisateur' placeholder='Mot_de_passe')
+//-                     .form-group
+//-                         button.btn.btn-success.btn-block
+//-                             | SigIn
+//-         .card-footer
+
+include footer.pug
+

@@ -1,0 +1,20 @@
+extends PageLayout
+
+block content
+
+    body.text-center(id="main") 
+
+        .container.p-4
+            .row
+                .col-md-4.mx-auto
+                    .card.text-center
+                        .card-header 
+                            h1.text-center(id="titre1").text-danger Mauvaise identification
+                        .card-body
+                            h3(id="titre2") Votre Nom ou Mot de passe n'est pas enregistré
+                            br
+                            a.btn.myButtonRetourCenter(href="/signin") Retour au Sign-in
+        br
+        br
+        img(src="images/LogoBookInkNoir.png", alt="LogoBookInk", style='max-width: 100px;')
+        img(src="images/logo.jpg", alt="5Monkeys", style="max-width: 100px;")

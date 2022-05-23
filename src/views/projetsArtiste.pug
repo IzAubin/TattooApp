@@ -1,0 +1,12 @@
+extends pageLayout
+
+block content
+    body.text-center(id="main")
+        .container.my-4
+            h3(id="titre1") Liste de vos Projets
+            //- boucle foreach
+            a.nav-link.col-sm-12.col-md-2.text-center(href="/projet/"+ParamC.Id_Client).text-primary.btn.btn-outline-secondary.btn-sm.mr-1.mt-1 FAKE PROJET
+    br
+    br
+    img(src="images/LogoBookInkNoir.png", alt="LogoBookInk", style='max-width: 100px;')
+    img(src="images/logo.jpg", alt="5Monkeys", style="max-width: 100px;")

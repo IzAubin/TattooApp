@@ -1,0 +1,43 @@
+extends pageLayout
+
+block content
+    .card.col-xs-8.col-md-5.m-auto.text-center
+        .card-head
+            h3.text-primary Images
+            hr
+        .card-body
+            form(action="/photos/"+ParamP[0].Id_projet method="POST" enctype="multipart/form-data")
+                input(type='hidden' name='Id_projet' placeholder='Id_Projet' value= ParamP[0].Id_projet) 
+                br
+                input(type='hidden' name='Id_Client' placeholder='Id_Client' value= ParamP[0].Id_Client) 
+                br
+                select#typeimage(name='Type_image')
+                    option(value='1') Croquis
+                    option(value='2') Image r&eacute;f&eacute;rence
+                    option(value='3') Dessine final
+                    option(value='4') Tatto final
+                    option(value='5') Aiguille
+                br
+                br
+                img#output(width='100px' height='100px')
+                br
+                br
+                input(type='file' name="Image" placeholder="Choisir un fichier" accept='image/*' onchange='openFile(event)') 
+                br
+                br
+                div(style="background-color:rgba(0,0,0,.03);")
+                    a(href='/listephotos/'+ParamP[0].Id_projet).text-info.btn.btn-outline-info.mr-1 Voir imagenes
+                    input.btn.btn-outline-success(name="Enregistrement" type="submit")
+                    a.btn.btn-primary.m-4(href='/listeClients/'+ParamP[0].Id_Artiste)
+                        | Liste de clients
+                script.
+                    var openFile = function(event) {
+                    var input = event.target;
+                    var reader = new FileReader();
+                    reader.onload = function(){
+                    var dataURL = reader.result;
+                    var output = document.getElementById('output');
+                    output.src = dataURL;
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                    }; 

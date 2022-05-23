@@ -1,0 +1,80 @@
+extends pageLayout 
+
+block content
+
+    section.paiement
+        .container.pb-5(style="height: 100vh;")
+            h1.text-right PAIEMENT
+            form(action="/paiement" method="post") 
+                input(type="text" name="Id_Projet" value= idprojet)
+                input(type="text" name="Id_Projet" value= infocleint[0].Nom_projet)
+                .row 
+                    .col-12
+                        //- button.myButton ENREGISTRER 
+                        button(type="submit").myButton ENREGISTRER
+                        button.myButton RETOUR
+
+                .row
+                    .col-12
+                        hr
+                .row 
+                    .col-12.col-md-5.mt-2
+                        p(style="font-size: 24px;font-weight: bold;")= hola
+                    .col-12.col-md-7.pb-5
+                        .illustration
+                            img(src='/images/dessin_final.jpg' alt="Dessin final")
+                .row 
+                    .col-12.col-md-2
+                        p(style="text-align: right;") Nom :
+                        p(style="text-align: right;") Solde :
+                    .col-12.col-md-5
+                        p(style="font-weight: bold")= infocleint[0].Nom_projet
+                        p(style="font-weight: bold") 2 400$
+
+                    .col-12.col-md-5
+                        p(style="text-align: right;font-size: 24px;font-weight: bold;") Montant recu                
+                        //- p(style="text-align: right; background-color: #00ccff; padding: 50px;font-size: 36px;font-weight: bold;") 1 200$
+                        input.form-control(type='number' name='Valeur_paiement' placeholder='0.00' style="text-align: right; background-color: #00ccff; padding: 50px;font-size: 42px;font-weight: bold; color: white;margin-bottom: 50px;")
+
+                .row
+                    .col-12.col-lg-7.mb-3
+                        .form-check.form-check-inline 
+                            input#inlineRadio1.form-check-input(type='radio' name='Type_paiement' value='Visa')
+                            label.form-check-label(for='inlineRadio1') Visa
+                        .form-check.form-check-inline
+                            input#inlineRadio2.form-check-input(type='radio' name='Type_paiement' value='Mastercard')
+                            label.form-check-label(for='inlineRadio2') Mastercard
+                        .form-check.form-check-inline
+                            input#inlineRadio3.form-check-input(type='radio' name='Type_paiement' value='Interac')
+                            label.form-check-label(for='inlineRadio3') Interac
+                        .form-check.form-check-inline
+                            input#inlineRadio4.form-check-input(type='radio' name='Type_paiement' value='Comptant')
+                            label.form-check-label(for='inlineRadio4') Comptant
+
+                    .col-12.col-lg-5.mb-3
+                        input.form-control(type='text' name='N_transaction_paiement' placeholder='Numéro de transaction' style='padding-right: 12px; width: 250px;')
+
+
+//- h4(style='padding-right: 5px;font-size: 16px;color: #00ccff;text-transform: capitalize;') Bonjour #{user.Nom_utilisateur}
+
+    //- .row
+    //-     .col-12                    
+    //-         form(action="/paiement" method="POST")  
+    //-             button(name="btn_modifier" type="submit")
+    //-                 input(type="text" name="retourId" value=elem.Id_paiement hidden)
+    //-                 input(type="text" name="retourNom" value=elem.Nom_artiste )
+    //-                 input(type="text" name="retourPrenom" value=elem.Prenom_artiste hidden)
+    //-                 input(type="text" name="retourSurnom" value=elem.Surnom_artiste hidden)
+    //-                 input(type="text" name="retourCour" value=elem.Courriel_artiste hidden)
+    //-                 input(type="text" name="retourTel" value=elem.Telephone_artiste hidden)
+    //-                 input(type="text" name="retourLogo" value=elem.Logo_artiste hidden)
+    //-                 input(type="text" name="retourProfile" value=elem.id_Profil_A hidden)
+    //-                 input(type="text" name="retourEtat" value=elem.Etat_artiste hidden)
+    //-                 h4 nom: 
+    //-                     span=elem.Nom_artiste
+    //-                 h5 prénom: 
+    //-                     span=elem.Prenom_artiste
+    //-                 h5 surnom: 
+    //-                     span=elem.Surnom_artiste
+    //-                 h5 courriel: 
+    //-                     span=elem.Courriel_artiste

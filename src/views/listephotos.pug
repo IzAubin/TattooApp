@@ -1,0 +1,115 @@
+extends pageLayout
+
+block content
+    style.
+        tr[data-href] {
+        cursor: pointer;
+        }
+    body.text-center(id="main")
+        .container.my-4
+            h3(id="titre1") Images de projet
+            br
+            a.btn.myButton.mb-4(href='../photos/'+ParamP[0].Id_Projet) Creer une image
+            a.btn.myButtonRetour.mb-4(href="/listeprojets/"+ParamP[0].Id_Client) Retour
+            div.table-responsive
+                table.table.table-dark.table-hover
+                    thead.thead-light
+                        tr
+                            th.text-dark(style="display:none;" onclick='sortTable(0)' scope='col') Id image
+                            th.text-dark(style="display:none;" onclick='sortTable(1)' scope='col') Id projet
+                            th.text-dark(onclick='sortTable(2)' scope='col') Type image
+                            th.text-dark(onclick='sortTable(3)' scope='col') Nom d'image
+                            th.text-dark(onclick='sortTable(4)' scope='col') Image
+                            th
+                    each item in ParamP
+                        tbody
+                            tr(data-href='../listephotos/'+item.Id_Projet)
+                                td(style="display:none;" name='Id_image' value="")= item.Id_image
+                                td(style="display:none;" name='Id_Projet' value="")= item.Id_Projet
+                                if item.Type_image === '1'
+                                    td(name='Type_image' value="") Croquis
+                                else if item.Type_image === '2'
+                                    td(name='Type_image' value="") Image r&eacute;f&eacute;rence
+                                else if item.Type_image === '3'
+                                    td(name='Type_image' value="") Dessine final
+                                else if item.Type_image === '4'
+                                    td(name='Type_image' value="") Tatto final
+                                else
+                                    td(name='Type_image' value="") Aiguille
+                                td(name='Nom_image' value="")= item.Nom_image
+                                td
+                                    img(src='../../images/'+item.Nom_image+'' alt=''+item.Nom_image+'' width='80px' height='80px' )
+                                td
+                                    a(href='../photos/'+item.Id_Projet)
+                                        i.fas.fa-solid.fa-folder-plus.fa-2x.text-light
+                                td
+                                    a(href='../listeProjets/'+item.Id_Client)
+                                        i.fas.fa-solid.fa-clipboard-list.fa-2x.text-light
+                                //- td
+                                //-     a.btn.btn-outline-warning(href='../modifierClient/'+item.Id_Client)
+                                //-         | Modifier Client
+
+        script.
+            function sortTable(n) {
+                var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+                table = document.getElementById("myTable");
+                switching = true;
+                //Set the sorting direction to ascending:
+                dir = "asc";
+                /*Make a loop that will continue until
+                no switching has been done:*/
+                while (switching) {
+                //start by saying: no switching is done:
+                switching = false;
+                rows = table.rows;
+                /*Loop through all table rows (except the
+                first, which contains table headers):*/
+                for (i = 1; i < (rows.length - 1); i++) {
+                //start by saying there should be no switching:
+                shouldSwitch = false;
+                /*Get the two elements you want to compare,
+                one from current row and one from the next:*/
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+                /*check if the two rows should switch place,
+                based on the direction, asc or desc:*/
+                if (dir == "asc") {
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch= true;
+                break;
+                }
+                } else if (dir == "desc") {
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                //if so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+                }
+                }
+                }
+                if (shouldSwitch) {
+                /*If a switch has been marked, make the switch
+                and mark that a switch has been done:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                //Each time a switch is done, increase this count by 1:
+                switchcount ++;
+                } else {
+                /*If no switching has been done AND the direction is "asc",
+                set the direction to "desc" and run the while loop again.*/
+                if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+                }
+                }
+                }
+            }
+        script.
+            document.addEventListener("DOMContentLoaded", () => {
+            const rows = document.querySelectorAll("tr[data-href]");        
+            rows.forEach(row => {
+            row.addEventListener("click", () => {
+            window.location.href = row.dataset.href;
+            });
+            });
+            });

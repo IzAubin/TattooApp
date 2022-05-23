@@ -1,0 +1,44 @@
+extends pageLayout
+
+block content
+    body.text-center(id="main")
+        .col-sm-8.col-md-6.mx-auto
+            .card.text-center
+                .card-head.my-4
+                    h3(id="titre1").text-dark=title
+                    hr
+                .card-body.text-center
+                    form( action="/listeArtiste" method="POST")
+                        label(for="Id_artiste" style='color: black;') ID Artiste:&emsp;&emsp;&emsp;&emsp;&nbsp;
+                            input(type='text' name="Id_artiste", value=passedId)
+                        br
+                        label(for="nom_artiste" style='color: black;') Nom:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+                            input(type='text' name='Nom_artiste' placeholder="Nom de l'artiste", value=oldNom)
+                        br
+                        label(for="prenom_artiste" style='color: black;') Prénom:&emsp;&emsp;&emsp;&emsp;&emsp;
+                            input(name="Prenom_artiste" placeholder="Prénom de l'artiste", value=oldPrenom) 
+                        br
+                        label(for="surnom_artiste" style='color: black;') Surnom:&emsp;&emsp;&emsp;&emsp;&emsp;
+                            input(name="Surnom_artiste" placeholder="Surnom de l'artiste" , value=oldSurnom) 
+                        br
+                        label(for="courriel_artiste" style='color: black;') Courriel:&emsp;&emsp;&emsp;&emsp;&emsp;
+                            input(name="Courriel_artiste" placeholder="Courriel artiste", value=oldCou)
+                        br 
+                        label(for="telephone_artiste" style='color: black;') Telephone:&emsp;&emsp;&emsp;&emsp;
+                            input(type="text" name="Telephone_artiste" placeholder="telephone artiste", value=oldTelephone) 
+                        br
+                        label(for="logo_artiste" style='color: black;') Logo:&nbsp;
+                            input(name="Logo_artiste" placeholder="logo" type="file", value=oldLogo) 
+                        br
+                        label(for="id_profile" style='color: black;') Profile:&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
+                            input(name="id_Profil" placeholder="id profile", value=oldIdProfile)
+                        br 
+                        label(for="etat_artiste" style='color: black;') État:
+                        select(name='Etat_artiste', value=oldEtat)
+                            option(value='A' selected='') Actif
+                            option(value='I') Inactif
+                        br
+                        a.btn.myButtonRetourCenter.mb-4(href="/") Retour
+                        input.btn.myButtonSuccess.mb-4(name="Enregistrement" type="submit")
+                        
+                .card-footer.text-center 

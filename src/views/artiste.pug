@@ -1,0 +1,18 @@
+extends pageLayout
+
+block content
+    .card.text-center.col-6.m-auto
+        .container.my-4
+            h2(id="titre1").text-dark Page Artiste
+            p(id="texte1") Votre page de gestion de vos projets et la liste de vos clients!
+            br
+            a.col-sm-12.col-md-10.text-center(href="/profileArtiste").text-primary.btn.btn-outline-secondary.btn-sm.mr-1.mt-1 Votre Profile
+            a.col-sm-12.col-md-10.text-center(href="/listeProjets/1").text-primary.btn.btn-outline-secondary.btn-sm.mr-1.mt-1 Vos Projets
+            a.col-sm-12.col-md-10.text-center(href="/listeClients/1").text-primary.btn.btn-outline-secondary.btn-sm.mr-1.mt-1 Vos Clients
+            a.col-sm-12.col-md-10.text-center(href="/").text-danger.btn.btn-outline-danger.btn-sm.mr-1.mt-1 Retour
+        br
+        br
+        br
+    body.text-center(id="main")
+    img(src="images/LogoBookInkNoir.png", alt="LogoBookInk", style='max-width: 100px;')
+    img(src="images/logo.jpg", alt="5Monkeys", style="max-width: 100px;")

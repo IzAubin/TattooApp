@@ -1,0 +1,39 @@
+extends pageLayout
+
+block content
+    body.text-center(id="main")
+        .col-sm-8.col-md-5.mx-auto
+            .card.text-center
+                .card-head.my-4
+                    h3(id="titre1").text-dark=title
+                    hr
+                .card-body.text-center
+                    form.pb-5( action="/listeClients" method="POST")
+                        input(type="hidden" name="Id_Client", value=passedId)
+                        input(type="hidden" name="Id_Artiste", value=passedIdArtiste)
+                        label(for="nom_client" style='color: black;') Nom:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                            input(type='text' name='nom_client' placeholder='Nom du client', value=oldNom) 
+                        br
+                        label(for="prenom_client" style='color: black;') Prénom:&emsp;&emsp;&emsp;&ensp;&nbsp;&emsp;
+                            input(name="prenom_client" placeholder="Prénom du client", value=oldPrenom) 
+                        br
+                        label(for="surnom_client" style='color: black;') Surnom:&emsp;&emsp;&emsp;&ensp;&nbsp;&emsp;
+                            input(name="surnom_client" placeholder="Surnom du client" , value=oldPrenom)
+                        br 
+                        label(for="communication_client" style='color: black;') Communication:&nbsp;&emsp;
+                            input(name="communication_client" placeholder="Communication client", value=oldCom) 
+                        br
+                        label(for="courriel_client" style='color: black;') Courrier:&emsp;&emsp;&emsp;&ensp;&nbsp;&emsp;
+                            input(type="email_client" name="courriel_client" placeholder="Courrier client", value=oldCourriel) 
+                        br
+                        label(for="cellulaire_client" style='color: black;') Cellulaire:&emsp;&emsp;&ensp;&ensp;&nbsp;&emsp;
+                            input(name="cellulaire_client" placeholder="Cellulaire", value=oldTel) 
+                        br
+                        label(for="enable_client" style='color: black;') État:&emsp;&emsp;
+                        select(name='enable_client', value=oldEtat)
+                            option(value='A' selected='') Actif
+                            option(value='I') Inactif
+                        br       
+                        a.btn.myButtonRetourCenter.my-4(href="/listeClients/"+ParamP.Id_Artiste) Retour                 
+                        input.btn.myButtonSuccess.my-4(name="Enregistrement" type="submit")
+                        
